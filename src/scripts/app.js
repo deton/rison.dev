@@ -19,9 +19,8 @@ const WHITE = {
   b: 255,
 };
 
-const vm = new Vue({ // eslint-disable-line no-unused-vars
-  el: '#app',
-  data: {
+const vm = Vue.createApp({
+  data: () => ({
     rison_string: '',
     json_string: '',
     kibana: true,
@@ -34,7 +33,7 @@ const vm = new Vue({ // eslint-disable-line no-unused-vars
     json_tbg: clone(WHITE),
     rison_bg_tween: null,
     json_bg_tween: null,
-  },
+  }),
   watch: {
     rison_bg: function () {
       if (this.rison_bg_tween) {
@@ -148,6 +147,7 @@ const vm = new Vue({ // eslint-disable-line no-unused-vars
     },
   },
 });
+vm.mount('#app');
 
 // Setup the animation loop.
 function animate (time) {
